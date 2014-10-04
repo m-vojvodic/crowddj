@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TrackCell.h"
 
-@interface RequesterPlayerViewController : UIViewController
+@interface RequesterPlayerViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+{
+    IBOutlet UITableView * trackQueueTableView;
+    
+    IBOutlet TrackCell * trackTableViewCell;
+    
+    IBOutlet UIButton * skipButton;
+    IBOutlet UIButton * requestButton;
+    
+    NSMutableArray * tracks;
+    NSString * djId;
+}
 
 @end

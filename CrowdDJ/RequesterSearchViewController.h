@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TrackCell.h"
 
-@interface RequesterSearchViewController : UIViewController
-
+@interface RequesterSearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+{
+    IBOutlet UISearchBar * songSearchBar;
+    IBOutlet UITableView * searchResultsTableView;
+    IBOutlet TrackCell * trackTableViewCell;
+    
+    NSMutableArray * tracks;
+    
+    NSDictionary * trackToAddToQueue;
+}
 @end
