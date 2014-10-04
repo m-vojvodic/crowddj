@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, DJPath) {
     DJPathGetDj,
     DJPathGetTracks,
     
-    DJPathPutTracks,
+    DJPathPutTrack,
     
     DJPathDeleteTrack,
     DJPathDeleteDj
@@ -35,7 +35,7 @@ typedef NS_ENUM(NSInteger, DJPath) {
             
         case DJPathPostTrack:
         case DJPathGetTracks:
-        case DJPathPutTracks:           return @"/api/tracks";
+        case DJPathPutTrack:           return @"/api/tracks";
             
         default:                        return nil;
     }
@@ -49,7 +49,7 @@ typedef NS_ENUM(NSInteger, DJPath) {
         case DJPathGetDj:
         case DJPathGetTracks:       return @"GET";
             
-        case DJPathPutTracks:       return @"PUT";
+        case DJPathPutTrack:       return @"PUT";
             
         case DJPathDeleteTrack:
         case DJPathDeleteDj:        return @"DELETE";
@@ -107,8 +107,8 @@ typedef NS_ENUM(NSInteger, DJPath) {
 #pragma mark - request serialization
 - (void) sendRequestForPath:(DJPath)path
                  withParams:(NSDictionary *) params
-                    success:(void (^)(NSDictionary *)) success
-                    failure:(void (^)(NSError *)) failure
+                    success:(void (^)(NSDictionary * dict)) success
+                    failure:(void (^)(NSError * err)) failure
 {
     if(!success)
         success = ^(NSDictionary * dict){};
@@ -123,7 +123,9 @@ typedef NS_ENUM(NSInteger, DJPath) {
     // create method
     NSString * method = [self methodForDJPath:path];
     if(!method)
-        failure([NSError errorWithDomain:DJErrorDomain code:DJErrorUnexpectedResponse userInfo:nil]);
+        failure([NSError errorWithDomain:DJErrorDomain
+                                    code:DJErrorUnexpectedResponse
+                                userInfo:nil]);
     
     // create request
     NSMutableURLRequest * request = [_manager.requestSerializer requestWithMethod:method
@@ -135,7 +137,16 @@ typedef NS_ENUM(NSInteger, DJPath) {
     AFHTTPRequestOperation * op =
     [_manager HTTPRequestOperationWithRequest:request
                                       success:^(AFHTTPRequestOperation *operation, id responseObject){
-                                          
+                                          if(!_.isDictionary(responseObject)){
+                                              NSLog(@"Failure in AFHTTPRequestOperation responseObject");
+                                              failure([NSError errorWithDomain:DJErrorDomain
+                                                                          code:DJErrorUnexpectedResponse
+                                                                      userInfo:nil]);
+                                          }
+                                          else{
+                                              NSLog(@"Success in AFHTTPRequestOperation");
+                                              success(responseObject);
+                                          }
                                       }
                                       failure:^(AFHTTPRequestOperation *operation , NSError *error){
                                           NSLog(@"Failure in AFHTTPRequestOperation");
@@ -155,9 +166,37 @@ typedef NS_ENUM(NSInteger, DJPath) {
  */
 - (void) createDjWithDjId:(NSString *) djId
                   success:(void (^)()) success
-                  failure:(void (^)(NSError *)) failure
+                  failure:(void (^)(NSError * err)) failure
 {
+    if(!djId)
+        djId = @"";
     
+    if(!success)
+        success = ^(){};
+    
+    if(!failure)
+        failure = ^(NSError * err){};
+    
+    NSDictionary * params = @{
+                              @"dj_id" : djId
+                              };
+    
+    [self sendRequestForPath:DJPathPostDj
+                  withParams:params
+                     success:^(NSDictionary * dict){
+                         id message = [dict objectForKey:@"message"];
+                         
+                         if(message){
+                             _djId = djId;
+                             success();
+                         }
+                         else
+                             failure([NSError errorWithDomain:DJErrorDomain
+                                                         code:DJErrorUnexpectedResponse
+                                                     userInfo:nil]);
+                     }
+                     failure:failure
+     ];
 }
 
 /*
@@ -166,10 +205,39 @@ typedef NS_ENUM(NSInteger, DJPath) {
  response: { tracks : tracks }
  */
 - (void) retrieveDjWithOptions:(NSDictionary *) options
-                       success:(void (^)(NSArray *)) success
-                       failure:(void (^)(NSError *)) failure
+                       success:(void (^)(NSArray * tracks)) success
+                       failure:(void (^)(NSError * err)) failure
 {
+    if(!options)
+        options = ^(NSDictionary * dict){};
     
+    if(!success)
+        success = ^(NSArray * arr){};
+    
+    if(!failure)
+        failure = ^(NSError * err){};
+    
+    NSDictionary * params = @{
+                              @"dj_id":_djId,
+                              @"options":options
+                              };
+
+    [self sendRequestForPath:DJPathGetDj
+                  withParams:params
+                     success:^(NSDictionary * dict){
+                         if(!_.isDictionary(dict)){
+                             NSLog(@"%@", dict);
+                             failure([NSError errorWithDomain:DJErrorDomain
+                                                         code:DJErrorUnexpectedResponse
+                                                     userInfo:nil]);
+                         }
+                         else{
+                             NSArray * tracks = [dict objectForKey:@"tracks"];
+                             success(tracks);
+                         }
+                     }
+                     failure:failure
+     ];
 }
 
 /*
@@ -179,9 +247,36 @@ typedef NS_ENUM(NSInteger, DJPath) {
  */
 - (void) deleteTrackWithTrackId:(NSString *) trackId
                         success:(void (^)()) success
-                        failure:(void (^)(NSError *)) failure
+                        failure:(void (^)(NSError * err)) failure
 {
+    if(!trackId)
+        trackId = @"";
     
+    if(!success)
+        success = ^(){};
+    
+    if(!failure)
+        failure = ^(NSError * err){};
+    
+    NSDictionary * params = @{
+                              @"dj_id":_djId,
+                              @"track_id":trackId
+                              };
+    
+    [self sendRequestForPath:DJPathDeleteTrack
+                  withParams:params
+                     success:^(NSDictionary * dict){
+                         id message = [dict objectForKey:@"message"];
+                         
+                         if(message)
+                             success();
+                         else
+                             failure([NSError errorWithDomain:DJErrorDomain
+                                                         code:DJErrorUnexpectedResponse
+                                                     userInfo:nil]);
+                     }
+                     failure:failure
+     ];
 }
 
 /*
@@ -190,22 +285,72 @@ typedef NS_ENUM(NSInteger, DJPath) {
  response: { message : success }
  */
 - (void) deleteDjOnSuccess:(void (^)()) success
-                   failure:(void (^)(NSError *)) failure
+                   failure:(void (^)(NSError * err)) failure
 {
+    if(!success)
+        success = ^(){};
     
+    if(!failure)
+        failure = ^(NSError * err){};
+    
+    NSDictionary * params = @{
+                              @"dj_id":_djId
+                              };
+    
+    [self sendRequestForPath:DJPathDeleteDj
+                  withParams:params
+                     success:^(NSDictionary * dict){
+                         id message = [dict objectForKey:@"message"];
+                         
+                         if(message)
+                             success();
+                         else
+                             failure([NSError errorWithDomain:DJErrorDomain
+                                                         code:DJErrorUnexpectedResponse
+                                                     userInfo:nil]);
+                     }
+                     failure:failure
+     ];
 }
 
 #pragma mark - Tracks API endpoint
 /*
  POST /api/tracks
- body: { dj_id : <>, url : <> }
+ body: { dj_id : <>, track : {} }
  response: { message : success }
  */
-- (void) createTrackWithUrl:(NSString *) url
-                    success:(void (^)()) success
-                    failure:(void (^)(NSError *)) failure
+- (void) createTrackWithTrack:(NSDictionary *) track
+                      success:(void (^)()) success
+                      failure:(void (^)(NSError * err)) failure
 {
+    if(!track)
+        track = @{};
     
+    if(!success)
+        success = ^(){};
+    
+    if(!failure)
+        failure = ^(NSError * err){};
+    
+    NSDictionary * params = @{
+                              @"dj_id":_djId,
+                              @"track":track
+                              };
+    
+    [self sendRequestForPath:DJPathPostTrack
+                  withParams:params
+                     success:^(NSDictionary * dict){
+                         id message = [dict objectForKey:@"message"];
+                         
+                         if(message)
+                             success();
+                         else
+                             failure([NSError errorWithDomain:DJErrorDomain
+                                                         code:DJErrorUnexpectedResponse
+                                                     userInfo:nil]);
+                     }
+                     failure:failure
+     ];
 }
 
 /*
@@ -213,10 +358,35 @@ typedef NS_ENUM(NSInteger, DJPath) {
  body: { dj_id : <> }
  response: { tracks : tracks }
  */
-- (void) retrieveTracksOnSuccess:(void (^)(NSArray *)) success
-                         failure:(void (^)(NSError *)) failure
+- (void) retrieveTracksOnSuccess:(void (^)(NSArray * tracks)) success
+                         failure:(void (^)(NSError * err)) failure
 {
+    if(!success)
+        success = ^(NSArray * arr){};
     
+    if(!failure)
+        failure = ^(NSError * err){};
+    
+    NSDictionary * params = @{
+                              @"dj_id":_djId
+                              };
+    
+    [self sendRequestForPath:DJPathGetTracks
+                  withParams:params
+                     success:^(NSDictionary * dict){
+                         if(!_.isDictionary(dict)){
+                             NSLog(@"%@", dict);
+                             failure([NSError errorWithDomain:DJErrorDomain
+                                                         code:DJErrorUnexpectedResponse
+                                                     userInfo:nil]);
+                         }
+                         else{
+                             NSArray * tracks = [dict objectForKey:@"tracks"];
+                             success(tracks);
+                         }
+                     }
+                     failure:failure
+     ];
 }
 
 /*
@@ -226,9 +396,36 @@ typedef NS_ENUM(NSInteger, DJPath) {
  */
 - (void) updateTrackWithTrackId:(NSString *) trackId
                         success:(void (^)()) success
-                        failure:(void (^)(NSError *)) failure
+                        failure:(void (^)(NSError * err)) failure
 {
+    if(!trackId)
+        trackId = @"";
     
+    if(!success)
+        success = ^(){};
+    
+    if(!failure)
+        failure = ^(NSError * err){};
+    
+    NSDictionary * params = @{
+                              @"dj_id":_djId,
+                              @"track_id":trackId
+                              };
+    
+    [self sendRequestForPath:DJPathPutTrack
+                  withParams:params
+                     success:^(NSDictionary * dict){
+                         id message = [dict objectForKey:@"message"];
+                         
+                         if(message)
+                             success();
+                         else
+                             failure([NSError errorWithDomain:DJErrorDomain
+                                                         code:DJErrorUnexpectedResponse
+                                                     userInfo:nil]);
+                     }
+                     failure:failure
+     ];
 }
 
 @end

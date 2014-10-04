@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <AFNetworking.h>
+#import "Underscore.h"
+#define _ Underscore
 
 extern NSString *const DJErrorDomain;
 
@@ -73,10 +75,10 @@ typedef NS_ENUM(NSInteger, DJError) {
 #pragma mark - Tracks API endpoint
 /*
  POST /api/tracks
- body: { dj_id : <>, url : <> }
+ body: { dj_id : <>, track : {} }
  response: { message : success }
  */
-- (void) createTrackWithUrl:(NSString *) url
+- (void) createTrackWithTrack:(NSDictionary *) track
                     success:(void (^)()) success
                     failure:(void (^)(NSError *)) failure;
 
