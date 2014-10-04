@@ -4,44 +4,68 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-AFNetworking.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
 		<key>Pods-CocoaSoundCloudAPI.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>Pods-CocoaSoundCloudUI.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>Pods-Firebase.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>Pods-JSONKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 		<key>Pods-NXOAuth2Client.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>Pods-OHAttributedLabel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>01A0E06DA9A0578388BFD52B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1DFBE29DC57CFA702EAC102F</key>
 		<dict>
 			<key>primary</key>
@@ -52,12 +76,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>382E2641D675F298E601F9C5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>442C59478F41CB746ED32583</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4DD398919100C82AFBC81E92</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4E7F54A7BD21D0F846C95C5F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5ECF91D4201EE16232BFC5EE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -68,6 +107,11 @@
 			<true/>
 		</dict>
 		<key>620F583755E0D45457A96480</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>64FFD93DB7511031E6DF7FF0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,7 +151,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>D5DFEAB1ECC5272E23FCED3B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>ED5D4FC348ED86EE55FDA406</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FBADA2A55077FB03B0397DB1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
