@@ -16,8 +16,6 @@
 
 @implementation DJPlayerViewController
 
-// TODO: ping server every 30 seconds (loadQueue)
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -27,15 +25,27 @@
     
     tracks = [[NSMutableArray alloc] init];
     
+    ServerInterface * djServerInterface = [ServerInterface serverInterface];
+    [djServerInterface set_djId:[NSString stringWithFormat:@"%d", 1115]];
+    [djServerInterface createDjWithDjId:[djServerInterface get_djId]
+                                success:^(){
+                                    // ?
+                                }
+                                failure:^(NSError * err){
+                                    NSLog(@"%@", err);
+                                }
+     ];
+    
     skipButton.titleLabel.text = @"Skip";
-    djId = [NSString stringWithFormat:@"%d", abs(rand() % 4000)];
-    idLabel.text = djId;
+    idLabel.text = [djServerInterface get_djId];
 
     [self loadQueue];
     
     // load player
     [self setUrlToPlay];
     [playerWebView loadHTMLString:urlToPlay baseURL:nil];
+    
+    // TODO: ping server every 30 seconds (loadQueue)
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,8 +100,8 @@
 
 - (void) loadQueue
 {
-    // TODO: send request to server
     ServerInterface * djServerInterface = [ServerInterface serverInterface];
+
     [djServerInterface retrieveTracksOnSuccess:^(NSArray * dict){
         tracks = [NSMutableArray arrayWithArray:dict];
     }

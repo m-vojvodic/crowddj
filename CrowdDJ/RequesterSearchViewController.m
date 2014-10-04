@@ -111,17 +111,25 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     ServerInterface * djServerInterface = [ServerInterface serverInterface];
     [djServerInterface searchSoundcloudWithSearchString:searchBar.text
                                                 success:^(NSArray * searchResults){
-                                                    tracks = [NSMutableArray arrayWithArray:searchResults];
+                                                    // TODO: filter through these (popularity? views?)
+                                                    // playback_count, favoritings_count
+                                                    NSSortDescriptor *sortDescriptor;
+                                                    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"playback_count"
+                                                                                                 ascending:NO];
+                                                    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+                                                    NSArray *sortedArray;
+                                                    sortedArray = [searchResults sortedArrayUsingDescriptors:sortDescriptors];
+                                                    
+                                                    tracks = (NSMutableArray *)_.tail(sortedArray, 10);
+                                                    NSLog(@"%@", tracks);
+                                                    
                                                 }
                                                 failure:^(NSError * err){
                                                     NSLog(@"%@", err);
                                                 }
      ];
     
-    NSLog(@"tracks:\n%@", tracks);
-    
     [searchResultsTableView reloadData];
 }
-
 
 @end

@@ -102,7 +102,7 @@ typedef NS_ENUM(NSInteger, DJError) {
 #pragma mark - Soundcloud API endpoint
 /*
  POST /api/soundcloud
- body: { searchString }
+ body: { search_string }
  response: { tracks : tracks }
  */
 - (void) searchSoundcloudWithSearchString:(NSString *) searchString

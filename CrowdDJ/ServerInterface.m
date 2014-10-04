@@ -38,7 +38,7 @@ typedef NS_ENUM(NSInteger, DJPath) {
         case DJPathGetTracks:
         case DJPathPutTrack:                return @"/api/tracks";
             
-        case DJPathPostSearchSoundcloud:    return @"/api/soundcloud";
+        case DJPathPostSearchSoundcloud:    return @"http://api.soundcloud.com/tracks?";
             
         default:                            return nil;
     }
@@ -68,6 +68,7 @@ typedef NS_ENUM(NSInteger, DJPath) {
     if(self = [super init]) {
         _manager = [AFHTTPRequestOperationManager manager];
         _manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [_manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         _manager.responseSerializer = [AFJSONResponseSerializer serializer];
         
         _soundcloudClientId = @"d36d7236a3819da854cc2a32cf21b6a8";
@@ -137,23 +138,23 @@ typedef NS_ENUM(NSInteger, DJPath) {
                                                                        parameters:params
                                                                             error:nil
                                      ];
+    
     // create operation
     AFHTTPRequestOperation * op =
     [_manager HTTPRequestOperationWithRequest:request
                                       success:^(AFHTTPRequestOperation *operation, id responseObject){
                                           if(!_.isDictionary(responseObject)){
-                                              NSLog(@"Failure in AFHTTPRequestOperation responseObject");
+                                              NSLog(@"Failure in AFHTTPRequestOperation responseObject %@", responseObject);
                                               failure([NSError errorWithDomain:DJErrorDomain
                                                                           code:DJErrorUnexpectedResponse
                                                                       userInfo:nil]);
                                           }
                                           else{
-                                              NSLog(@"Success in AFHTTPRequestOperation");
                                               success(responseObject);
                                           }
                                       }
                                       failure:^(AFHTTPRequestOperation *operation , NSError *error){
-                                          NSLog(@"Failure in AFHTTPRequestOperation");
+                                          NSLog(@"Failure in AFHTTPRequestOperation %@", error);
                                           failure(error);
                                       }
      ];
@@ -188,16 +189,20 @@ typedef NS_ENUM(NSInteger, DJPath) {
     [self sendRequestForPath:DJPathPostDj
                   withParams:params
                      success:^(NSDictionary * dict){
+                         NSLog(@"%@", dict);
                          id message = [dict objectForKey:@"message"];
                          
                          if(message){
+                             NSLog(@"created user with dj id %@", djId);
                              _djId = djId;
                              success();
                          }
-                         else
+                         else{
+                             NSLog(@"did not create user with dj id %@", djId);
                              failure([NSError errorWithDomain:DJErrorDomain
                                                          code:DJErrorUnexpectedResponse
                                                      userInfo:nil]);
+                         }
                      }
                      failure:failure
      ];
@@ -370,7 +375,7 @@ typedef NS_ENUM(NSInteger, DJPath) {
     
     if(!failure)
         failure = ^(NSError * err){};
-    
+    NSLog(@"dj id %@", _djId);
     NSDictionary * params = @{
                               @"dj_id":_djId
                               };
@@ -378,6 +383,7 @@ typedef NS_ENUM(NSInteger, DJPath) {
     [self sendRequestForPath:DJPathGetTracks
                   withParams:params
                      success:^(NSDictionary * dict){
+                         NSLog(@"%@", dict);
                          if(!_.isDictionary(dict)){
                              NSLog(@"%@", dict);
                              failure([NSError errorWithDomain:DJErrorDomain
@@ -385,6 +391,7 @@ typedef NS_ENUM(NSInteger, DJPath) {
                                                      userInfo:nil]);
                          }
                          else{
+                             NSLog(@"success");
                              NSArray * tracks = [dict objectForKey:@"tracks"];
                              success(tracks);
                          }
@@ -433,8 +440,10 @@ typedef NS_ENUM(NSInteger, DJPath) {
 }
 
 #pragma mark - Soundcloud API endpoint
-/* POST 
- 
+/*
+ POST /api/soundcloud
+ body: { search_string }
+ response: { tracks : tracks }
  */
 - (void) searchSoundcloudWithSearchString:(NSString *) searchString
                                   success:(void (^)(NSArray * searchResults)) success
@@ -444,31 +453,53 @@ typedef NS_ENUM(NSInteger, DJPath) {
         searchString = @"";
     
     if(!success)
-        success = ^(NSArray * searchResults){};
+        success = ^(NSArray * arr){};
     
     if(!failure)
         failure = ^(NSError * err){};
     
-    NSDictionary * params = @{
-                              
-                              };
+    // convert spaces to character code
+    NSString *modifiedSearchString = [searchString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     
-    [self sendRequestForPath:DJPathPostSearchSoundcloud
-                  withParams:params
-                     success:^(NSDictionary * dict){
-                         id searchResults = [dict objectForKey:@"tracks"];
-                         
-                         if(_.isArray(searchResults)){
-                             success(searchResults);
-                         }
-                         else{
-                             failure([NSError errorWithDomain:DJErrorDomain
-                                                         code:DJErrorUnexpectedResponse
-                                                     userInfo:nil]);
-                         }
-                     }
-                     failure:failure
+    // create url
+    NSString * test = [[[[[NSMutableString stringWithString:@"http://api.soundcloud.com/tracks?"] stringByAppendingString:modifiedSearchString] stringByAppendingString:@"&client_id="] stringByAppendingString:_soundcloudClientId] stringByAppendingString:@"&format=json"];
+    
+    // create method
+    NSString * method = [self methodForDJPath:DJPathPostSearchSoundcloud];
+    if(!method)
+        failure([NSError errorWithDomain:DJErrorDomain
+                                    code:DJErrorUnexpectedResponse
+                                userInfo:nil]);
+    
+    // create request
+    NSMutableURLRequest * request = [_manager.requestSerializer requestWithMethod:method
+                                                                        URLString:test
+                                                                       parameters:nil
+                                                                            error:nil
+                                     ];
+    
+    // create operation
+    AFHTTPRequestOperation * op =
+    [_manager HTTPRequestOperationWithRequest:request
+                                      success:^(AFHTTPRequestOperation *operation, id responseObject){
+                                          if(!_.isArray(responseObject)){
+                                              NSLog(@"Failure in AFHTTPRequestOperation responseObject %@", responseObject);
+                                              failure([NSError errorWithDomain:DJErrorDomain
+                                                                          code:DJErrorUnexpectedResponse
+                                                                      userInfo:nil]);
+                                          }
+                                          else{
+                                              success(responseObject);
+                                          }
+                                      }
+                                      failure:^(AFHTTPRequestOperation *operation , NSError *error){
+                                          NSLog(@"Failure in AFHTTPRequestOperation %@", error);
+                                          failure(error);
+                                      }
      ];
+    
+    // start operation
+    [op start];
 }
 
 

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SplashScreenViewController.h"
+#import "SCUI.h"
 
 @interface AppDelegate ()
 
