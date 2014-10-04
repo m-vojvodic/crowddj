@@ -25,6 +25,7 @@
     
     NSMutableArray * tracks;
     NSString * djId;
+    NSString * artworkUrl;
 }
 
 @end

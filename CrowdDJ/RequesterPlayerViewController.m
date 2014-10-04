@@ -15,7 +15,7 @@
 
 @implementation RequesterPlayerViewController
 
-// TODO: ping server every 30 s
+// TODO: ping server every 30 s (loadQueue)
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,6 +29,65 @@
     // TODO: colors/images
     skipButton.titleLabel.text = @"Skip";
     requestButton.titleLabel.text = @"Request";
+    
+    [tracks addObject:@{
+                        
+                        @"id": @13158665,
+                        @"created_at": @"2011/04/06 15:37:43 +0000",
+                        @"user_id": @3699101,
+                        @"duration": @18109,
+                        @"commentable": @true,
+                        @"state": @"finished",
+                        @"sharing": @"public",
+                        @"tag_list": @"soundcloud:source=iphone-record",
+                        @"permalink": @"munching-at-tiannas-house",
+                        @"description": @"",
+                        @"streamable": @true,
+                        @"downloadable": @true,
+                        @"genre": @"",
+                        @"release": @"",
+                        @"purchase_url": @"",
+                        @"label_id": @"",
+                        @"label_name": @"",
+                        @"isrc": @"",
+                        @"video_url": @"",
+                        @"track_type": @"recording",
+                        @"key_signature": @"",
+                        @"bpm": @"",
+                        @"title": @"Munching at Tiannas house",
+                        @"release_year": @"",
+                        @"release_month": @"",
+                        @"release_day": @"",
+                        @"original_format": @"m4a",
+                        @"original_content_size": @10211857,
+                        @"license": @"all-rights-reserved",
+                        @"uri": @"http://api.soundcloud.com/tracks/13158665",
+                        @"permalink_url": @"http://soundcloud.com/user2835985/munching-at-tiannas-house",
+                        @"artwork_url": @"",
+                        @"waveform_url": @"http://w1.sndcdn.com/fxguEjG4ax6B_m.png",
+                        @"user": @{
+        @"id": @3699101,
+        @"permalink": @"user2835985",
+        @"username": @"user2835985",
+        @"uri": @"http://api.soundcloud.com/users/3699101",
+        @"permalink_url": @"http://soundcloud.com/user2835985",
+        @"avatar_url": @"http://a1.sndcdn.com/images/default_avatar_large.png?142a848"
+    },
+                        @"stream_url": @"http://api.soundcloud.com/tracks/13158665/stream",
+                        @"download_url": @"http://api.soundcloud.com/tracks/13158665/download",
+                        @"playback_count": @0,
+                        @"download_count": @0,
+                        @"favoritings_count": @0,
+                        @"comment_count": @0,
+                        @"created_with": @{
+        @"id": @124,
+        @"name": @"SoundCloud iPhone",
+        @"uri": @"http://api.soundcloud.com/apps/124",
+        @"permalink_url": @"http://soundcloud.com/apps/iphone"
+    },
+                        @"attachments_uri": @"http://api.soundcloud.com/tracks/13158665/attachments"
+                        }
+     ];
     
     [self loadQueue];
 }
@@ -86,9 +145,19 @@
 - (void) loadQueue
 {
     // TODO: send request to server
-    
     titleTextView.text = [[tracks firstObject] objectForKey:@"title"];
     artistTextView.text = [[[tracks firstObject] objectForKey:@"user"] objectForKey:@"username"];
+
+    if([[tracks firstObject] objectForKey:@"artwork_url"] != NULL){
+        // if there is unique artwork for the track
+        artworkUrl = [[tracks firstObject] objectForKey:@"artwork_url"];
+    }
+    else{
+        // else use profile pic artwork
+        artworkUrl = [[[tracks firstObject] objectForKey:@"user"] objectForKey:@"avatar_url"];
+    }
+    
+    NSLog(@"artwork... %@", artworkUrl);
     
     [trackQueueTableView reloadData];
 }

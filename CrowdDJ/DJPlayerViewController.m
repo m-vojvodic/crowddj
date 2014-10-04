@@ -15,7 +15,7 @@
 
 @implementation DJPlayerViewController
 
-// TODO: ping server every 30 seconds
+// TODO: ping server every 30 seconds (loadQueue)
 
 - (void)viewDidLoad {
     [super viewDidLoad];
