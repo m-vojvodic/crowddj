@@ -22,12 +22,12 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    //SplashScreenViewController* splashScreenViewController = [[SplashScreenViewController alloc] init];
-    //self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:splashScreenViewController];
+    SplashScreenViewController* splashScreenViewController = [[SplashScreenViewController alloc] init];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:splashScreenViewController];
     
-    RequesterPlayerViewController* requesterPlayerViewController = [[RequesterPlayerViewController alloc] init];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:requesterPlayerViewController];
-    
+//    RequesterPlayerViewController* requesterPlayerViewController = [[RequesterPlayerViewController alloc] init];
+//    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:requesterPlayerViewController];
+//    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

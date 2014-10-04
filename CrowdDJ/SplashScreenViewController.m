@@ -8,6 +8,7 @@
 
 #import "SplashScreenViewController.h"
 #import "DJPlayerViewController.h"
+#import "RequesterConnectViewController.h"
 
 
 @interface SplashScreenViewController ()
@@ -27,12 +28,15 @@
 }
 
 - (IBAction)goToDjViewController:(id)sender {
-    NSLog(@"go to dj view controller");
-    
-    DJPlayerViewController *myViewController = [[DJPlayerViewController alloc] initWithNibName:@"DJPlayerViewController" bundle:nil];
+     DJPlayerViewController *myViewController = [[DJPlayerViewController alloc] initWithNibName:@"DJPlayerViewController" bundle:nil];
     [self.navigationController pushViewController:myViewController animated:YES];
 
 
+}
+
+- (IBAction)goToRequestController:(id)sender {
+    RequesterConnectViewController *myViewController = [[RequesterConnectViewController alloc] initWithNibName:@"RequesterConnectViewController" bundle:nil];
+    [self.navigationController pushViewController:myViewController animated:YES];
 }
 
 /*
