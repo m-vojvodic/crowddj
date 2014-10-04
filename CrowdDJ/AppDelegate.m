@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "DJPlayerViewController.h"
+#import "SplashScreenViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,8 +20,8 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    DJPlayerViewController* djPlayerViewController = [[DJPlayerViewController alloc] init];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:djPlayerViewController];
+    SplashScreenViewController* splashScreenViewController = [[SplashScreenViewController alloc] init];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:splashScreenViewController];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
