@@ -15,6 +15,8 @@
 
 @implementation RequesterPlayerViewController
 
+// TODO: ping server every 30 s
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -27,6 +29,8 @@
     // TODO: colors/images
     skipButton.titleLabel.text = @"Skip";
     requestButton.titleLabel.text = @"Request";
+    
+    [self loadQueue];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,6 +86,10 @@
 - (void) loadQueue
 {
     // TODO: send request to server
+    
+    titleTextView.text = [[tracks firstObject] objectForKey:@"title"];
+    artistTextView.text = [[[tracks firstObject] objectForKey:@"user"] objectForKey:@"username"];
+    
     [trackQueueTableView reloadData];
 }
 

@@ -18,6 +18,11 @@
     IBOutlet UIButton * skipButton;
     IBOutlet UIButton * requestButton;
     
+    IBOutlet UIImageView * artworkOfCurrentTrack;
+    
+    IBOutlet UITextView * artistTextView;
+    IBOutlet UITextView * titleTextView;
+    
     NSMutableArray * tracks;
     NSString * djId;
 }

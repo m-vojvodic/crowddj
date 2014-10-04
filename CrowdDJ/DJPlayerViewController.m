@@ -65,6 +65,7 @@
     // TODO: colors / images
     
     skipButton.titleLabel.text = @"Skip";
+    djId = [NSString stringWithFormat:@"%d", abs(rand() % 4000)];
     idLabel.text = djId;
 
     [self loadQueue];
@@ -130,15 +131,17 @@
     [trackQueueTableView reloadData];
 }
 
-// TODO: fix autoplay
+// TODO: fix autoplay, robustness
 - (void) setUrlToPlay
 {
     // construct url from queue
-    NSString * beginningOfUrlString = @"<iframe width=\"100%\" height=\"120\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=";
-    NSString * newUrlToPlay = [[tracks firstObject] objectForKey:@"uri"];
-    NSString * endOfUrlString = @"&auto_play=true\"></iframe>";
-
-    urlToPlay = (NSMutableString *)[[[NSMutableString stringWithString:beginningOfUrlString] stringByAppendingString:newUrlToPlay] stringByAppendingString:endOfUrlString];
+    if([tracks count] > 0){
+        NSString * beginningOfUrlString = @"<iframe width=\"100%\" height=\"120\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=";
+        NSString * newUrlToPlay = [[tracks firstObject] objectForKey:@"uri"];
+        NSString * endOfUrlString = @"&auto_play=true\"></iframe>";
+        
+        urlToPlay = (NSMutableString *)[[[NSMutableString stringWithString:beginningOfUrlString] stringByAppendingString:newUrlToPlay] stringByAppendingString:endOfUrlString];
+    }
 }
 
 -(IBAction) skipSong
