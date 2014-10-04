@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		93556FC6263A4068A480B3F8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45478DC8125B45F6A5E215D6 /* libPods.a */; };
+		AD24202B19DFF86E0098A026 /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD24202A19DFF86E0098A026 /* TrackCell.xib */; };
+		AD24202E19DFF9150098A026 /* TrackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD24202D19DFF9150098A026 /* TrackCell.m */; };
 		AD949C6319DFDDF400CF0EF6 /* DJPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD949C5519DFDDF400CF0EF6 /* DJPlayerViewController.m */; };
 		AD949C6419DFDDF400CF0EF6 /* DJPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD949C5619DFDDF400CF0EF6 /* DJPlayerViewController.xib */; };
 		AD949C6519DFDDF400CF0EF6 /* RequesterConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD949C5819DFDDF400CF0EF6 /* RequesterConnectViewController.m */; };
@@ -38,6 +40,9 @@
 		1B98F4F9A0DB30C2E6827023 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		45478DC8125B45F6A5E215D6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2DBA72AEA227C4CA754F9AC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		AD24202A19DFF86E0098A026 /* TrackCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
+		AD24202C19DFF9150098A026 /* TrackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackCell.h; sourceTree = "<group>"; };
+		AD24202D19DFF9150098A026 /* TrackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackCell.m; sourceTree = "<group>"; };
 		AD949C5419DFDDF400CF0EF6 /* DJPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DJPlayerViewController.h; sourceTree = "<group>"; };
 		AD949C5519DFDDF400CF0EF6 /* DJPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DJPlayerViewController.m; sourceTree = "<group>"; };
 		AD949C5619DFDDF400CF0EF6 /* DJPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DJPlayerViewController.xib; sourceTree = "<group>"; };
@@ -110,6 +115,9 @@
 				AD949C5419DFDDF400CF0EF6 /* DJPlayerViewController.h */,
 				AD949C5519DFDDF400CF0EF6 /* DJPlayerViewController.m */,
 				AD949C5619DFDDF400CF0EF6 /* DJPlayerViewController.xib */,
+				AD24202C19DFF9150098A026 /* TrackCell.h */,
+				AD24202D19DFF9150098A026 /* TrackCell.m */,
+				AD24202A19DFF86E0098A026 /* TrackCell.xib */,
 				AD949C5719DFDDF400CF0EF6 /* RequesterConnectViewController.h */,
 				AD949C5819DFDDF400CF0EF6 /* RequesterConnectViewController.m */,
 				AD949C5919DFDDF400CF0EF6 /* RequesterConnectViewController.xib */,
@@ -259,6 +267,7 @@
 				AD949C6A19DFDDF400CF0EF6 /* RequesterSearchViewController.xib in Resources */,
 				ADF6F1E719DFDAD2004AED9D /* Images.xcassets in Resources */,
 				AD949C6C19DFDDF400CF0EF6 /* SplashScreenViewController.xib in Resources */,
+				AD24202B19DFF86E0098A026 /* TrackCell.xib in Resources */,
 				AD949C6619DFDDF400CF0EF6 /* RequesterConnectViewController.xib in Resources */,
 				AD949C6819DFDDF400CF0EF6 /* RequesterPlayerViewController.xib in Resources */,
 				AD949C6419DFDDF400CF0EF6 /* DJPlayerViewController.xib in Resources */,
@@ -315,6 +324,7 @@
 				AD949C6719DFDDF400CF0EF6 /* RequesterPlayerViewController.m in Sources */,
 				AD949C6919DFDDF400CF0EF6 /* RequesterSearchViewController.m in Sources */,
 				ADF6F1DF19DFDAD2004AED9D /* AppDelegate.m in Sources */,
+				AD24202E19DFF9150098A026 /* TrackCell.m in Sources */,
 				AD949C6B19DFDDF400CF0EF6 /* SplashScreenViewController.m in Sources */,
 				AD949C6319DFDDF400CF0EF6 /* DJPlayerViewController.m in Sources */,
 				AD949C6519DFDDF400CF0EF6 /* RequesterConnectViewController.m in Sources */,

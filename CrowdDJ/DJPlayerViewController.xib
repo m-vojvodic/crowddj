@@ -20,9 +20,12 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJe-mq-U4g">
                     <rect key="frame" x="32" y="214" width="120" height="30"/>
-                    <state key="normal" title="Button">
+                    <state key="normal" title="Skip">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="skipSong" destination="-1" eventType="touchDown" id="1oI-Pa-zs1"/>
+                    </connections>
                 </button>
                 <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vdO-pd-RDA">
                     <rect key="frame" x="0.0" y="78" width="320" height="128"/>
@@ -37,6 +40,10 @@
                 <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RXo-po-YH1">
                     <rect key="frame" x="0.0" y="252" width="320" height="316"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="EkI-lD-O1e"/>
+                        <outlet property="delegate" destination="-1" id="kLD-zb-uK3"/>
+                    </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

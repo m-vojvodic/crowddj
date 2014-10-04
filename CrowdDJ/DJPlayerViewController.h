@@ -8,14 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "TrackCell.h"
 
 @interface DJPlayerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
-    NSArray * tracks;
+    NSString * djId;
+    NSMutableArray * tracks;
     AVAudioPlayer * player;
 
     IBOutlet UIWebView * playerWebView;
     IBOutlet UITableView * trackQueueTableView;
+    IBOutlet TrackCell * trackTableViewCell;
     IBOutlet UIButton * skipButton;
     IBOutlet UILabel * idLabel;
 }
