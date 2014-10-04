@@ -27,7 +27,7 @@
     tracks = [[NSMutableArray alloc] init];
     
     // just for testing
-    /*
+    
     [tracks addObject:@{
         @"title": @"Munching at Tiannas house",
         @"uri": @"http://api.soundcloud.com/tracks/13158665",
@@ -60,7 +60,7 @@
                         @"download_url": @"http://api.soundcloud.com/tracks/13158665/download"
                         }
      ];
-    */
+    
     
     // TODO: colors / images
     

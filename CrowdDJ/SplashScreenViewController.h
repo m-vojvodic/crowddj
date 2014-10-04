@@ -10,6 +10,7 @@
 
 @interface SplashScreenViewController : UIViewController
 
-@property UIButton *goToDjController;
+    @property UIButton *goToDjController;
+    @property UIButton *goToRequestController;
 
 @end

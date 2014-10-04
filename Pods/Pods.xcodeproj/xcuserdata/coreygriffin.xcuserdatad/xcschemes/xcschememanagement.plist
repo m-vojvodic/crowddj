@@ -4,17 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-CocoaSoundCloudAPI.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-CocoaSoundCloudUI.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-Firebase.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,72 +42,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1DFBE29DC57CFA702EAC102F</key>
+		<key>02470B63631BD9FE3BE9FA16</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>35C20F8B12D0DF24ED46F835</key>
+		<key>3674377C5FA52DAB7016F44E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>442C59478F41CB746ED32583</key>
+		<key>95BA77DD85091F7B52040481</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4E7F54A7BD21D0F846C95C5F</key>
+		<key>B52E8F0E8058382F1057310D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5F1999BA467EEEE305C960A5</key>
+		<key>B8A4D29D0E76C2D4EBA4E55D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>620F583755E0D45457A96480</key>
+		<key>C65D1115D62A0963D924BEA7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>663B8E7655026FF9C6E385DC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6E2E6D6828BDE9CB7F96E849</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>728E549408257EE263E5A00F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>823DD61CDCAEBA9122AB331C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>95512E70B51236E41024A061</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C2A5F6D32FF75A950C8C2D91</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C46F1B12E7CFAC8764B054D4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>ED5D4FC348ED86EE55FDA406</key>
+		<key>D3516010839941614FA77AE7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
