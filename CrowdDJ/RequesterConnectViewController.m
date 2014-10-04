@@ -7,6 +7,7 @@
 //
 
 #import "RequesterConnectViewController.h"
+#import "RequesterPlayerViewController.h"
 
 @interface RequesterConnectViewController ()
 
@@ -22,6 +23,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)connectToDj:(id)sender {
+    RequesterPlayerViewController *myViewController = [[RequesterPlayerViewController alloc] initWithNibName:@"RequesterPlayerViewController" bundle:nil];
+    [self.navigationController pushViewController:myViewController animated:YES];
+
 }
 
 /*
