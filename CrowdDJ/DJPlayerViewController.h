@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface DJPlayerViewController : UIViewController
+@interface DJPlayerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+{
+    NSArray * tracks;
+    AVAudioPlayer * player;
+
+    IBOutlet UIWebView * playerWebView;
+    IBOutlet UITableView * trackQueueTableView;
+    IBOutlet UIButton * skipButton;
+    IBOutlet UILabel * idLabel;
+}
 
 @end
