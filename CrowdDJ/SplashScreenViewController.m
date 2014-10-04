@@ -27,12 +27,13 @@
 }
 
 - (IBAction)goToDjViewController:(id)sender {
-    NSLog(@"go to dj view controller");
-    
     DJPlayerViewController *myViewController = [[DJPlayerViewController alloc] initWithNibName:@"DJPlayerViewController" bundle:nil];
     [self.navigationController pushViewController:myViewController animated:YES];
 
 
+}
+- (IBAction)goToRequesterConnectController:(id)sender {
+    
 }
 
 /*
