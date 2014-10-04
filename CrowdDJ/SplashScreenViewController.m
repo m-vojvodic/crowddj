@@ -8,6 +8,7 @@
 
 #import "SplashScreenViewController.h"
 #import "DJPlayerViewController.h"
+#import "RequesterConnectViewController.h"
 
 
 @interface SplashScreenViewController ()
@@ -29,11 +30,11 @@
 - (IBAction)goToDjViewController:(id)sender {
     DJPlayerViewController *myViewController = [[DJPlayerViewController alloc] initWithNibName:@"DJPlayerViewController" bundle:nil];
     [self.navigationController pushViewController:myViewController animated:YES];
-
-
 }
+
 - (IBAction)goToRequesterConnectController:(id)sender {
-    
+    RequesterConnectViewController *myViewController = [[RequesterConnectViewController alloc] initWithNibName:@"RequesterConnectViewController" bundle:nil];
+    [self.navigationController pushViewController:myViewController animated:YES];
 }
 
 /*
