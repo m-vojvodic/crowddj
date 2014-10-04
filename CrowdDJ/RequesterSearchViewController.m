@@ -7,6 +7,8 @@
 //
 
 #import "RequesterSearchViewController.h"
+#import "RequesterPlayerViewController.h"
+#import "ServerInterface.h"
 
 @interface RequesterSearchViewController ()
 
@@ -30,9 +32,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
+#pragma mark - Navigation
+/*
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
@@ -77,7 +79,18 @@
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     trackToAddToQueue = [tracks objectAtIndex:indexPath.row];
-    // TODO: send server a request
+    ServerInterface * djServerInterface = [ServerInterface serverInterface];
+    
+    [djServerInterface createTrackWithTrack:trackToAddToQueue
+                                    success:^(){
+                                        // don't need to change anything
+                                        // previous view will reload
+                                        [self.navigationController popViewControllerAnimated:YES];
+                                    }
+                                    failure:^(NSError * err){
+                                        NSLog(@"%@", err);
+                                    }
+     ];
 }
 
 #pragma mark - search bar delegate
@@ -94,7 +107,16 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     if([searchBar.text isEqual:@""]){
         return;
     }
-    // TODO: fetch results from server
+    // TODO: fetch
+    ServerInterface * djServerInterface = [ServerInterface serverInterface];
+    [djServerInterface searchSoundcloudWithSearchString:searchBar.text
+                                                success:^(NSArray * searchResults){
+                                                    tracks = [NSMutableArray arrayWithArray:searchResults];
+                                                }
+                                                failure:^(NSError * err){
+                                                    NSLog(@"%@", err);
+                                                }
+     ];
     
     NSLog(@"tracks:\n%@", tracks);
     

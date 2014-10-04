@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TrackCell.h"
+#import "SCUI.h"
 
 @interface RequesterSearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 {

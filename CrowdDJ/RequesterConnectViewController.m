@@ -8,6 +8,7 @@
 
 #import "RequesterConnectViewController.h"
 #import "RequesterPlayerViewController.h"
+#import "ServerInterface.h"
 
 @interface RequesterConnectViewController ()
 
@@ -25,9 +26,33 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)connectToDj:(id)sender {
-    RequesterPlayerViewController *myViewController = [[RequesterPlayerViewController alloc] initWithNibName:@"RequesterPlayerViewController" bundle:nil];
-    [self.navigationController pushViewController:myViewController animated:YES];
+    if([djIdTextField.text isEqual:@""]){
+        NSLog(@"No can dosville baby doll");
+        return;
+    }
+    ServerInterface * djServerInterface = [ServerInterface serverInterface];
+    [djServerInterface set_djId:djIdTextField.text];
+    
+    //need server
+    NSLog(@"djServerInterface/_djId %@", [djServerInterface get_djId]);
+    [djServerInterface retrieveDjWithOptions:@{@"options":@{}}
+                                     success:^(NSArray * tracks){
+                                         // TODO: possible conditional statements
+                                         NSLog(@"%@", tracks);
+                                         djIdTextField.text = 0;
+                                         
+                                         RequesterPlayerViewController *rpvc = [[RequesterPlayerViewController alloc] initWithNibName:@"RequesterPlayerViewController" bundle:nil];
+                                         [rpvc setTracks:tracks];
+                                         [self.navigationController pushViewController:rpvc animated:YES];
+                                     }
+                                     failure:^(NSError * err){
+                                         NSLog(@"%@", err);
+                                     }
+     ];
+    
+    RequesterPlayerViewController *rpvc = [[RequesterPlayerViewController alloc] initWithNibName:@"RequesterPlayerViewController" bundle:nil];
 
+    [self.navigationController pushViewController:rpvc animated:YES];
 }
 
 /*

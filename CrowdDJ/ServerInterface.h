@@ -99,5 +99,14 @@ typedef NS_ENUM(NSInteger, DJError) {
                         success:(void (^)()) success
                         failure:(void (^)(NSError *)) failure;
 
+#pragma mark - Soundcloud API endpoint
+/*
+ POST /api/soundcloud
+ body: { searchString }
+ response: { tracks : tracks }
+ */
+- (void) searchSoundcloudWithSearchString:(NSString *) searchString
+                                  success:(void (^)(NSArray * searchResults)) success
+                                  failure:(void (^)(NSError * err)) failure;
 
 @end

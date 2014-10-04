@@ -8,6 +8,7 @@
 
 #import "RequesterPlayerViewController.h"
 #import "RequesterSearchViewController.h"
+#import "ServerInterface.h"
 
 @interface RequesterPlayerViewController ()
 
@@ -144,11 +145,20 @@
 
 - (void) loadQueue
 {
-    // TODO: send request to server
+    // TODO: check if need to skip
+    
+    ServerInterface * djServerInterface = [ServerInterface serverInterface];
+    [djServerInterface retrieveTracksOnSuccess:^(NSArray * dict){
+        tracks = [NSMutableArray arrayWithArray:dict];
+    }
+                                       failure:^(NSError * err){
+                                           NSLog(@"%@", err);
+                                       }
+     ];
+    
     titleTextView.text = [[tracks firstObject] objectForKey:@"title"];
     artistTextView.text = [[[tracks firstObject] objectForKey:@"user"] objectForKey:@"username"];
 
-    // TODO: possibly fix
     if(![[[tracks firstObject] objectForKey:@"artwork_url"] isEqual:@""]){
         // if there is unique artwork for the track
         artworkUrl = [[tracks firstObject] objectForKey:@"artwork_url"];
@@ -164,15 +174,33 @@
     [trackQueueTableView reloadData];
 }
 
-- (IBAction) skipSong
+- (IBAction) skipTrack
 {
-    // send request to server to skip song
+    ServerInterface * djServerInterface = [ServerInterface serverInterface];
+    [djServerInterface updateTrackWithTrackId:[[tracks firstObject] objectForKey:@"id"]
+                                      success:^(){
+                                          // TODO: implement skipping reuqest
+                                      }
+                                    failure:^(NSError * err){
+                                        NSLog(@"%@", err);
+                                    }
+     ];
 }
 
 - (IBAction) requestSong
 {
     RequesterSearchViewController *requesterViewController = [[RequesterSearchViewController alloc] initWithNibName:@"RequesterSearchViewController" bundle:nil];
     [self.navigationController pushViewController:requesterViewController animated:YES];
+}
+
+- (void) setTracks:(NSArray *) newTracks
+{
+    tracks = [NSMutableArray arrayWithArray:newTracks];
+}
+
+- (void) addTrack:(NSDictionary *) newTrack
+{
+    [tracks addObject:newTrack];
 }
 
 @end

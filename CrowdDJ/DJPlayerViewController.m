@@ -8,6 +8,7 @@
 
 #import "DJPlayerViewController.h"
 #import "SplashScreenViewController.h"
+#import "ServerInterface.h"
 
 @interface DJPlayerViewController ()
 
@@ -25,44 +26,6 @@
     [trackQueueTableView setRowHeight:64];
     
     tracks = [[NSMutableArray alloc] init];
-    
-    // just for testing
-    
-    [tracks addObject:@{
-        @"title": @"Munching at Tiannas house",
-        @"uri": @"http://api.soundcloud.com/tracks/13158665",
-        @"permalink_url": @"http://soundcloud.com/user2835985/munching-at-tiannas-house",
-        @"user": @{
-            @"id": @3699101,
-            @"permalink": @"user2835985",
-            @"username": @"user2835985",
-            @"uri": @"http://api.soundcloud.com/users/3699101",
-            @"permalink_url": @"http://soundcloud.com/user2835985",
-            @"avatar_url": @"http://a1.sndcdn.com/images/default_avatar_large.png?142a848"
-        },
-        @"stream_url": @"http://api.soundcloud.com/tracks/13158665/stream",
-        @"download_url": @"http://api.soundcloud.com/tracks/13158665/download"
-    }
-     ];
-    [tracks addObject:@{
-                        @"title": @"Berghain bangers",
-                        @"uri": @"http://api.soundcloud.com/tracks/69422508",
-                        @"permalink_url": @"http://soundcloud.com/jochempaap/speedy-j-berghain-nov-2012",
-                        @"user": @{
-                                @"id": @3699101,
-                                @"permalink": @"user2835985",
-                                @"username": @"berghain",
-                                @"uri": @"http://api.soundcloud.com/users/3699101",
-                                @"permalink_url": @"http://soundcloud.com/user2835985",
-                                @"avatar_url": @"http://a1.sndcdn.com/images/default_avatar_large.png?142a848"
-                                },
-                        @"stream_url": @"http://api.soundcloud.com/tracks/13158665/stream",
-                        @"download_url": @"http://api.soundcloud.com/tracks/13158665/download"
-                        }
-     ];
-    
-    
-    // TODO: colors / images
     
     skipButton.titleLabel.text = @"Skip";
     djId = [NSString stringWithFormat:@"%d", abs(rand() % 4000)];
@@ -128,10 +91,28 @@
 - (void) loadQueue
 {
     // TODO: send request to server
+    ServerInterface * djServerInterface = [ServerInterface serverInterface];
+    [djServerInterface retrieveTracksOnSuccess:^(NSArray * dict){
+        tracks = [NSMutableArray arrayWithArray:dict];
+    }
+                                  failure:^(NSError * err){
+                                      NSLog(@"%@", err);
+                                      tracks = [NSMutableArray arrayWithArray:@[
+                                                                                @{
+                                                                                    @"title":@"No tracks currently on queue",
+                                                                                    @"user":@{
+                                                                                            @"username":@"Be the first to queue a track"
+                                                                                            }
+                                                                                    }
+                                                                                ]
+                                                ];
+                                  }
+     ];
+    
     [trackQueueTableView reloadData];
 }
 
-// TODO: fix autoplay, robustness
+// TODO: fix autoplay bug!
 - (void) setUrlToPlay
 {
     // construct url from queue

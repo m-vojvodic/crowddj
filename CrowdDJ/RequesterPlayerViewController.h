@@ -28,4 +28,7 @@
     NSString * artworkUrl;
 }
 
+- (void) setTracks:(NSArray *) newTracks;
+- (void) addTrack:(NSDictionary *) newTrack;
+
 @end

@@ -6,6 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RequesterConnectViewController">
             <connections>
+                <outlet property="connectToDJ" destination="93h-lN-ymT" id="Tbg-wO-Bam"/>
+                <outlet property="djIdTextField" destination="9DR-Qd-7dT" id="HUk-iz-2fv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="BwZ-2h-cse"/>
             </connections>
         </placeholder>
@@ -19,14 +21,14 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter the DJ Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4D-1C-4hu">
-                    <rect key="frame" x="87" y="193" width="146" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter the DJ ID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4D-1C-4hu">
+                    <rect key="frame" x="102" y="206" width="117" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="93h-lN-ymT">
-                    <rect key="frame" x="111" y="279" width="99" height="30"/>
+                    <rect key="frame" x="111" y="273" width="99" height="30"/>
                     <state key="normal" title="Connect to DJ">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>

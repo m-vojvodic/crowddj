@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface RequesterConnectViewController : UIViewController
+{
+    IBOutlet UIButton * connectToDJ;
+    IBOutlet UITextField * djIdTextField;
+}
 
 @end

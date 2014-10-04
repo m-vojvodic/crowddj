@@ -16,6 +16,7 @@ NSString *const DJServerRoot  = @"http://localhost:3000";
 typedef NS_ENUM(NSInteger, DJPath) {
     DJPathPostDj,
     DJPathPostTrack,
+    DJPathPostSearchSoundcloud,
     
     DJPathGetDj,
     DJPathGetTracks,
@@ -31,30 +32,33 @@ typedef NS_ENUM(NSInteger, DJPath) {
         case DJPathPostDj:
         case DJPathGetDj:
         case DJPathDeleteTrack:
-        case DJPathDeleteDj:            return @"/api/dj";
+        case DJPathDeleteDj:                return @"/api/dj";
             
         case DJPathPostTrack:
         case DJPathGetTracks:
-        case DJPathPutTrack:           return @"/api/tracks";
+        case DJPathPutTrack:                return @"/api/tracks";
             
-        default:                        return nil;
+        case DJPathPostSearchSoundcloud:    return @"/api/soundcloud";
+            
+        default:                            return nil;
     }
 }
 
 - (NSString *) methodForDJPath:(DJPath)path {
     switch(path){
         case DJPathPostDj:
-        case DJPathPostTrack:       return @"POST";
+        case DJPathPostTrack:
+        case DJPathPostSearchSoundcloud:    return @"POST";
             
         case DJPathGetDj:
-        case DJPathGetTracks:       return @"GET";
+        case DJPathGetTracks:               return @"GET";
             
-        case DJPathPutTrack:       return @"PUT";
+        case DJPathPutTrack:                return @"PUT";
             
         case DJPathDeleteTrack:
-        case DJPathDeleteDj:        return @"DELETE";
+        case DJPathDeleteDj:                return @"DELETE";
             
-        default:                    return nil;
+        default:                            return nil;
     }
 }
 
@@ -216,12 +220,12 @@ typedef NS_ENUM(NSInteger, DJPath) {
     
     if(!failure)
         failure = ^(NSError * err){};
-    
+    NSLog(@"are we safe now?");
     NSDictionary * params = @{
                               @"dj_id":_djId,
-                              @"options":options
+                              @"options":@"none"
                               };
-
+    NSLog(@"requesting");
     [self sendRequestForPath:DJPathGetDj
                   withParams:params
                      success:^(NSDictionary * dict){
@@ -427,5 +431,45 @@ typedef NS_ENUM(NSInteger, DJPath) {
                      failure:failure
      ];
 }
+
+#pragma mark - Soundcloud API endpoint
+/* POST 
+ 
+ */
+- (void) searchSoundcloudWithSearchString:(NSString *) searchString
+                                  success:(void (^)(NSArray * searchResults)) success
+                                  failure:(void (^)(NSError * err)) failure
+{
+    if(!searchString)
+        searchString = @"";
+    
+    if(!success)
+        success = ^(NSArray * searchResults){};
+    
+    if(!failure)
+        failure = ^(NSError * err){};
+    
+    NSDictionary * params = @{
+                              
+                              };
+    
+    [self sendRequestForPath:DJPathPostSearchSoundcloud
+                  withParams:params
+                     success:^(NSDictionary * dict){
+                         id searchResults = [dict objectForKey:@"tracks"];
+                         
+                         if(_.isArray(searchResults)){
+                             success(searchResults);
+                         }
+                         else{
+                             failure([NSError errorWithDomain:DJErrorDomain
+                                                         code:DJErrorUnexpectedResponse
+                                                     userInfo:nil]);
+                         }
+                     }
+                     failure:failure
+     ];
+}
+
 
 @end
