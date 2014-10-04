@@ -7,6 +7,8 @@
 //
 
 #import "SplashScreenViewController.h"
+#import "DJPlayerViewController.h"
+
 
 @interface SplashScreenViewController ()
 
@@ -22,6 +24,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)goToDjViewController:(id)sender {
+    NSLog(@"go to dj view controller");
+    
+    DJPlayerViewController *myViewController = [[DJPlayerViewController alloc] initWithNibName:@"DJPlayerViewController" bundle:nil];
+    [self.navigationController pushViewController:myViewController animated:YES];
+
+
 }
 
 /*
