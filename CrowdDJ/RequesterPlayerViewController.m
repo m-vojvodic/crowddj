@@ -148,7 +148,8 @@
     titleTextView.text = [[tracks firstObject] objectForKey:@"title"];
     artistTextView.text = [[[tracks firstObject] objectForKey:@"user"] objectForKey:@"username"];
 
-    if([[tracks firstObject] objectForKey:@"artwork_url"] != NULL){
+    // TODO: possibly fix
+    if(![[[tracks firstObject] objectForKey:@"artwork_url"] isEqual:@""]){
         // if there is unique artwork for the track
         artworkUrl = [[tracks firstObject] objectForKey:@"artwork_url"];
     }
@@ -156,8 +157,9 @@
         // else use profile pic artwork
         artworkUrl = [[[tracks firstObject] objectForKey:@"user"] objectForKey:@"avatar_url"];
     }
-    
-    NSLog(@"artwork... %@", artworkUrl);
+
+    UIImage * image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:artworkUrl]]];
+    artworkImageView.image = image;
     
     [trackQueueTableView reloadData];
 }

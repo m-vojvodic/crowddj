@@ -18,7 +18,7 @@
     IBOutlet UIButton * skipButton;
     IBOutlet UIButton * requestButton;
     
-    IBOutlet UIImageView * artworkOfCurrentTrack;
+    IBOutlet UIImageView * artworkImageView;
     
     IBOutlet UITextView * artistTextView;
     IBOutlet UITextView * titleTextView;

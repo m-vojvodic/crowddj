@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface SplashScreenViewController : UIViewController
-
+{
+}
     @property UIButton *goToDjController;
     @property UIButton *goToRequestController;
 
