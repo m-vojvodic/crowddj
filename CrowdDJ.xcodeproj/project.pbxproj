@@ -25,6 +25,16 @@
 		ADF6F1DF19DFDAD2004AED9D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF6F1DE19DFDAD2004AED9D /* AppDelegate.m */; };
 		ADF6F1E719DFDAD2004AED9D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADF6F1E619DFDAD2004AED9D /* Images.xcassets */; };
 		ADF6F1F619DFDAD2004AED9D /* CrowdDJTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF6F1F519DFDAD2004AED9D /* CrowdDJTests.m */; };
+		BF4AF1C619E0CA4000E60F50 /* UIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4AF1C519E0CA4000E60F50 /* UIImage.m */; };
+		BF4AF1D019E0CB4B00E60F50 /* addbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = BF4AF1C819E0CB4B00E60F50 /* addbutton.png */; };
+		BF4AF1D119E0CB4B00E60F50 /* darkbglarge.png in Resources */ = {isa = PBXBuildFile; fileRef = BF4AF1C919E0CB4B00E60F50 /* darkbglarge.png */; };
+		BF4AF1D219E0CB4B00E60F50 /* hostbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = BF4AF1CA19E0CB4B00E60F50 /* hostbutton.png */; };
+		BF4AF1D319E0CB4B00E60F50 /* requestbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = BF4AF1CB19E0CB4B00E60F50 /* requestbutton.png */; };
+		BF4AF1D419E0CB4B00E60F50 /* scratch-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = BF4AF1CC19E0CB4B00E60F50 /* scratch-logo.png */; };
+		BF4AF1D519E0CB4B00E60F50 /* scratchbglarge.png in Resources */ = {isa = PBXBuildFile; fileRef = BF4AF1CD19E0CB4B00E60F50 /* scratchbglarge.png */; };
+		BF4AF1D619E0CB4B00E60F50 /* scratchlanding.png in Resources */ = {isa = PBXBuildFile; fileRef = BF4AF1CE19E0CB4B00E60F50 /* scratchlanding.png */; };
+		BF4AF1D719E0CB4B00E60F50 /* skipbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = BF4AF1CF19E0CB4B00E60F50 /* skipbutton.png */; };
+		BF4AF1D919E0CED400E60F50 /* connectbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = BF4AF1D819E0CED400E60F50 /* connectbutton.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +81,17 @@
 		ADF6F1EF19DFDAD2004AED9D /* CrowdDJTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrowdDJTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF6F1F419DFDAD2004AED9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADF6F1F519DFDAD2004AED9D /* CrowdDJTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrowdDJTests.m; sourceTree = "<group>"; };
+		BF4AF1C419E0CA4000E60F50 /* UIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImage.h; sourceTree = "<group>"; };
+		BF4AF1C519E0CA4000E60F50 /* UIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImage.m; sourceTree = "<group>"; };
+		BF4AF1C819E0CB4B00E60F50 /* addbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = addbutton.png; path = Resources/addbutton.png; sourceTree = "<group>"; };
+		BF4AF1C919E0CB4B00E60F50 /* darkbglarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = darkbglarge.png; path = Resources/darkbglarge.png; sourceTree = "<group>"; };
+		BF4AF1CA19E0CB4B00E60F50 /* hostbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hostbutton.png; path = Resources/hostbutton.png; sourceTree = "<group>"; };
+		BF4AF1CB19E0CB4B00E60F50 /* requestbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = requestbutton.png; path = Resources/requestbutton.png; sourceTree = "<group>"; };
+		BF4AF1CC19E0CB4B00E60F50 /* scratch-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "scratch-logo.png"; path = "Resources/scratch-logo.png"; sourceTree = "<group>"; };
+		BF4AF1CD19E0CB4B00E60F50 /* scratchbglarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scratchbglarge.png; path = Resources/scratchbglarge.png; sourceTree = "<group>"; };
+		BF4AF1CE19E0CB4B00E60F50 /* scratchlanding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scratchlanding.png; path = Resources/scratchlanding.png; sourceTree = "<group>"; };
+		BF4AF1CF19E0CB4B00E60F50 /* skipbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = skipbutton.png; path = Resources/skipbutton.png; sourceTree = "<group>"; };
+		BF4AF1D819E0CED400E60F50 /* connectbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = connectbutton.png; path = Resources/connectbutton.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +139,8 @@
 				AD24202C19DFF9150098A026 /* TrackCell.h */,
 				AD24202D19DFF9150098A026 /* TrackCell.m */,
 				AD24202A19DFF86E0098A026 /* TrackCell.xib */,
+				BF4AF1C419E0CA4000E60F50 /* UIImage.h */,
+				BF4AF1C519E0CA4000E60F50 /* UIImage.m */,
 				AD949C5419DFDDF400CF0EF6 /* DJPlayerViewController.h */,
 				AD949C5519DFDDF400CF0EF6 /* DJPlayerViewController.m */,
 				AD949C5619DFDDF400CF0EF6 /* DJPlayerViewController.xib */,
@@ -138,6 +161,7 @@
 				ADF6F1DD19DFDAD2004AED9D /* AppDelegate.h */,
 				ADF6F1DE19DFDAD2004AED9D /* AppDelegate.m */,
 				ADF6F1E619DFDAD2004AED9D /* Images.xcassets */,
+				BF4AF1C719E0CB1500E60F50 /* Resources */,
 				ADF6F1D919DFDAD2004AED9D /* Supporting Files */,
 			);
 			path = CrowdDJ;
@@ -168,6 +192,22 @@
 				ADF6F1F419DFDAD2004AED9D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BF4AF1C719E0CB1500E60F50 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BF4AF1C819E0CB4B00E60F50 /* addbutton.png */,
+				BF4AF1C919E0CB4B00E60F50 /* darkbglarge.png */,
+				BF4AF1CA19E0CB4B00E60F50 /* hostbutton.png */,
+				BF4AF1D819E0CED400E60F50 /* connectbutton.png */,
+				BF4AF1CB19E0CB4B00E60F50 /* requestbutton.png */,
+				BF4AF1CC19E0CB4B00E60F50 /* scratch-logo.png */,
+				BF4AF1CD19E0CB4B00E60F50 /* scratchbglarge.png */,
+				BF4AF1CE19E0CB4B00E60F50 /* scratchlanding.png */,
+				BF4AF1CF19E0CB4B00E60F50 /* skipbutton.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		FCC8C0F568254457B2401171 /* Frameworks */ = {
@@ -269,13 +309,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF4AF1D619E0CB4B00E60F50 /* scratchlanding.png in Resources */,
 				AD949C6A19DFDDF400CF0EF6 /* RequesterSearchViewController.xib in Resources */,
 				ADF6F1E719DFDAD2004AED9D /* Images.xcassets in Resources */,
 				AD949C6C19DFDDF400CF0EF6 /* SplashScreenViewController.xib in Resources */,
 				AD24202B19DFF86E0098A026 /* TrackCell.xib in Resources */,
+				BF4AF1D519E0CB4B00E60F50 /* scratchbglarge.png in Resources */,
 				AD949C6619DFDDF400CF0EF6 /* RequesterConnectViewController.xib in Resources */,
+				BF4AF1D019E0CB4B00E60F50 /* addbutton.png in Resources */,
+				BF4AF1D319E0CB4B00E60F50 /* requestbutton.png in Resources */,
 				AD949C6819DFDDF400CF0EF6 /* RequesterPlayerViewController.xib in Resources */,
+				BF4AF1D919E0CED400E60F50 /* connectbutton.png in Resources */,
+				BF4AF1D119E0CB4B00E60F50 /* darkbglarge.png in Resources */,
+				BF4AF1D419E0CB4B00E60F50 /* scratch-logo.png in Resources */,
 				AD949C6419DFDDF400CF0EF6 /* DJPlayerViewController.xib in Resources */,
+				BF4AF1D219E0CB4B00E60F50 /* hostbutton.png in Resources */,
+				BF4AF1D719E0CB4B00E60F50 /* skipbutton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +382,7 @@
 				AD949C6B19DFDDF400CF0EF6 /* SplashScreenViewController.m in Sources */,
 				AD949C6319DFDDF400CF0EF6 /* DJPlayerViewController.m in Sources */,
 				AD949C6519DFDDF400CF0EF6 /* RequesterConnectViewController.m in Sources */,
+				BF4AF1C619E0CA4000E60F50 /* UIImage.m in Sources */,
 				AD0A812119E026DD00FE3755 /* ServerInterface.m in Sources */,
 				ADF6F1DC19DFDAD2004AED9D /* main.m in Sources */,
 			);

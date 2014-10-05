@@ -9,6 +9,7 @@
 #import "RequesterConnectViewController.h"
 #import "RequesterPlayerViewController.h"
 #import "ServerInterface.h"
+#import "UIImage.h"
 
 @interface RequesterConnectViewController ()
 
@@ -19,6 +20,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    CGSize phoneSize = CGSizeMake(width, height);
+    
+    UIImage *BGImage = [UIImage imageNamed: @"darkbglarge.png"];
+    UIImage *scaledBG = [BGImage scaleToSize: phoneSize];
+    self.view.backgroundColor = [UIColor colorWithPatternImage: scaledBG];
 }
 
 - (void)didReceiveMemoryWarning {

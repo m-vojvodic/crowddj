@@ -9,6 +9,7 @@
 #import "SplashScreenViewController.h"
 #import "DJPlayerViewController.h"
 #import "RequesterConnectViewController.h"
+#import "UIImage.h"
 
 
 @interface SplashScreenViewController ()
@@ -20,6 +21,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    // set up bg and logo
+    
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    CGSize phoneSize = CGSizeMake(width, height);
+    
+    UIImage *BGImage = [UIImage imageNamed: @"scratchbglarge.png"];
+    UIImage *scaledBG = [BGImage scaleToSize: phoneSize];
+    self.view.backgroundColor = [UIColor colorWithPatternImage: scaledBG];
+    
+    UIImage *logoLarge = [UIImage imageNamed: @"scratch-logo.png"];
+    CGFloat logoWidth = width * 3/4;
+    CGFloat logoProportion = logoWidth / logoLarge.size.width;
+    CGFloat logoHeight = logoLarge.size.height * logoProportion;
+    
+    UIImage *scaledLogo = [UIImage imageWithCGImage:[logoLarge CGImage]
+                                              scale:(logoLarge.scale * logoProportion)
+                                        orientation: (logoLarge.imageOrientation)];
+    
+    UIImageView *logoHolder = [[UIImageView alloc] initWithFrame: CGRectMake(width/7.5, height/2.5,logoWidth, logoHeight)];
+    logoHolder.image = scaledLogo;
+    
+    [self.view addSubview: logoHolder];
+    
+    
+    /*UIButton *DJButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview: DJButton];*/
+
 }
 
 - (void)didReceiveMemoryWarning {
