@@ -29,12 +29,14 @@ PODS:
   - JSONKit (1.5pre)
   - NXOAuth2Client (1.2.1)
   - OHAttributedLabel (3.5.4)
+  - UIImage+BlurredFrame (0.0.4)
   - Underscore.m (0.2.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - CocoaSoundCloudAPI (= 1.0.1)
   - CocoaSoundCloudUI (= 1.0.5)
+  - UIImage+BlurredFrame (~> 0.0)
   - Underscore.m
 
 SPEC CHECKSUMS:
@@ -44,6 +46,7 @@ SPEC CHECKSUMS:
   JSONKit: efef3bbd3372ff33f96b9c6f34cf4fe18e74ab69
   NXOAuth2Client: 28de3d9bde510d398e62d723a0123c500017af84
   OHAttributedLabel: fcf1d1245b4c8d2df94da91369b1474901d7fb14
+  UIImage+BlurredFrame: 0c38f5760d72125c47d16001a88faaac573bd35d
   Underscore.m: f99c166a9fdccfb5069085b6b4263c04b817fc9f
 
 COCOAPODS: 0.34.1

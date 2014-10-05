@@ -36,7 +36,7 @@
     UIImage *logoLarge = [UIImage imageNamed: @"scratchredlogo.png"];
     CGFloat logoWidth = width * 3/4;
     CGFloat logoProportion = logoWidth / logoLarge.size.width;
-    CGFloat logoHeight = logoLarge.size.height * logoProportion - logoProportion/2;
+    CGFloat logoHeight = logoLarge.size.height * logoProportion - logoProportion/4;
     
     UIImage *scaledLogo = [UIImage imageWithCGImage:[logoLarge CGImage]
                                               scale:(logoLarge.scale * logoProportion)

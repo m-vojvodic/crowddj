@@ -9,6 +9,8 @@
 #import "RequesterPlayerViewController.h"
 #import "RequesterSearchViewController.h"
 #import "ServerInterface.h"
+#import "UIImage.h"
+#import "UIImage+BlurredFrame.h"
 
 @interface RequesterPlayerViewController ()
 
@@ -165,9 +167,11 @@
     titleTextView.text = [[tracks firstObject] objectForKey:@"title"];
     artistTextView.text = [[[tracks firstObject] objectForKey:@"user"] objectForKey:@"username"];
 
+    
     if(![[[tracks firstObject] objectForKey:@"artwork_url"] isEqual:@""]){
         // if there is unique artwork for the track
         artworkUrl = [[tracks firstObject] objectForKey:@"artwork_url"];
+        NSLog(@"the artwork_url was equal to null string");
     }
     else{
         // else use profile pic artwork
@@ -175,7 +179,23 @@
     }
 
     UIImage * image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:artworkUrl]]];
-    artworkImageView.image = image;
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGSize topHalfSize = CGSizeMake(width, width);
+    
+    UIImage *scaledImage = [image scaleToSize: topHalfSize];
+    CGRect blurFrame = CGRectMake(0, 0, scaledImage.size.width, scaledImage.size.height);
+    scaledImage = [scaledImage applyLightEffectAtFrame:blurFrame];
+    
+    
+    //UIView * imageUIView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width/2, [UIScreen mainScreen].bounds.size.height/2)];
+    
+    UIImageView * imageView = [[UIImageView alloc] initWithImage: scaledImage];
+    //artworkImageView.image = image;
+    //artworkImageView = imageView;
+
+    
+    [self.view addSubview:imageView];
+    imageView.layer.zPosition = -2;
     
     [trackQueueTableView reloadData];
 }

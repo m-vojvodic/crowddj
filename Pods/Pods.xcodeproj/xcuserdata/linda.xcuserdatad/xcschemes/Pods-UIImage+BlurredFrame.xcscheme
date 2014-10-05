@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C3A94885823A3CD0DF9CFF78"
-               BuildableName = "libPods-CocoaSoundCloudUI.a"
-               BlueprintName = "Pods-CocoaSoundCloudUI"
+               BlueprintIdentifier = "19926B462FB076F42F815C68"
+               BuildableName = "libPods-UIImage+BlurredFrame.a"
+               BlueprintName = "Pods-UIImage+BlurredFrame"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
