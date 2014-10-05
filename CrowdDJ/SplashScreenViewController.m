@@ -12,6 +12,7 @@
 #import "UIImage.h"
 
 
+
 @interface SplashScreenViewController ()
 
 @end
@@ -49,6 +50,12 @@
     
     /*UIButton *DJButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview: DJButton];*/
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0];
+    
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
 
 }
 
