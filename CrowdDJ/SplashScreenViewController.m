@@ -32,10 +32,10 @@
     UIImage *scaledBG = [BGImage scaleToSize: phoneSize];
     self.view.backgroundColor = [UIColor colorWithPatternImage: scaledBG];
     
-    UIImage *logoLarge = [UIImage imageNamed: @"scratch-logo.png"];
+    UIImage *logoLarge = [UIImage imageNamed: @"scratchredlogo.png"];
     CGFloat logoWidth = width * 3/4;
     CGFloat logoProportion = logoWidth / logoLarge.size.width;
-    CGFloat logoHeight = logoLarge.size.height * logoProportion;
+    CGFloat logoHeight = logoLarge.size.height * logoProportion - logoProportion/2;
     
     UIImage *scaledLogo = [UIImage imageWithCGImage:[logoLarge CGImage]
                                               scale:(logoLarge.scale * logoProportion)
