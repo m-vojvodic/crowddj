@@ -6,9 +6,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RequesterPlayerViewController">
             <connections>
-                <outlet property="artistTextView" destination="4ox-NR-H5f" id="rfT-jr-rhP"/>
-                <outlet property="requestButton" destination="gra-DK-578" id="bwV-a9-b7b"/>
-                <outlet property="skipButton" destination="NSI-qq-xfn" id="gAZ-d7-2hD"/>
                 <outlet property="titleTextView" destination="qSC-MD-33e" id="hPo-e8-gfk"/>
                 <outlet property="trackQueueTableView" destination="r8z-nA-7hw" id="i10-C4-wPc"/>
                 <outlet property="view" destination="JN4-7o-iHH" id="OX2-xJ-si9"/>
@@ -20,57 +17,36 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="r8z-nA-7hw">
-                    <rect key="frame" x="0.0" y="252" width="320" height="316"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="0.0" y="253" width="320" height="315"/>
+                    <color key="backgroundColor" red="0.050980396568775177" green="0.062745101749897003" blue="0.062745101749897003" alpha="1" colorSpace="deviceRGB"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="pQL-qw-pKC"/>
                         <outlet property="delegate" destination="-1" id="zhZ-JJ-oYG"/>
                     </connections>
                 </tableView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qSC-MD-33e">
-                    <rect key="frame" x="21" y="113" width="278" height="49"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUs-xn-d0E">
+                    <rect key="frame" x="21" y="123" width="278" height="24"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ox-NR-H5f">
-                    <rect key="frame" x="21" y="98" width="278" height="24"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                    <color key="textColor" red="0.98823535442352295" green="0.3333333432674408" blue="0.29411765933036804" alpha="1" colorSpace="deviceRGB"/>
+                    <color key="textColor" red="0.98823535442352295" green="0.29411765933036804" blue="0.32549020648002625" alpha="1" colorSpace="deviceRGB"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSI-qq-xfn">
-                    <rect key="frame" x="54" y="189" width="79" height="50"/>
-                    <state key="normal" title="Skip" image="skipbutton.png">
-                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="skipTrack" destination="-1" eventType="touchDown" id="v2r-7h-8WE"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gra-DK-578">
-                    <rect key="frame" x="186" y="189" width="80" height="50"/>
-                    <state key="normal" title="Request" image="addbutton.png">
-                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="requestSong" destination="-1" eventType="touchDown" id="eeh-hd-yA7"/>
-                    </connections>
-                </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Label" translatesAutoresizingMaskIntoConstraints="NO" id="qSC-MD-33e">
+                    <rect key="frame" x="21" y="104" width="278" height="49"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="139" y="154"/>
         </view>
     </objects>
-    <resources>
-        <image name="addbutton.png" width="193" height="116"/>
-        <image name="skipbutton.png" width="193" height="116"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

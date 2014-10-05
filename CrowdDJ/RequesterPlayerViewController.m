@@ -180,27 +180,59 @@
 
     UIImage * image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:artworkUrl]]];
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
-    CGSize topHalfSize = CGSizeMake(width, width);
+    CGSize topHalfSize = CGSizeMake(width, width/1.25);
     
     UIImage *scaledImage = [image scaleToSize: topHalfSize];
     CGRect blurFrame = CGRectMake(0, 0, scaledImage.size.width, scaledImage.size.height);
     scaledImage = [scaledImage applyLightEffectAtFrame:blurFrame];
     
+   // UIView * darkGrey = [[[UIView] alloc] initWithFrame: CGRectMake(0,0,width,width)];
+    UIView * darkGreyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, width/1.25)];
+    CGFloat newHeight = 2*width / 3;
+    UIView * songInfoView = [[UIView alloc] initWithFrame:CGRectMake(0, width/3.5, width, width/4.5)];
+    [darkGreyView setBackgroundColor: [UIColor colorWithRed: 0.2 green: 0.2 blue: 0.2 alpha:0.4]];
+    [songInfoView setBackgroundColor: [UIColor colorWithRed: 0.1 green: 0.1 blue: 0.1 alpha:0.8]];
     
-    //UIView * imageUIView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width/2, [UIScreen mainScreen].bounds.size.height/2)];
+    //skip button
+    CGSize buttonSize = CGSizeMake(width/4, width/6);
+    UIImage * skipImage = [UIImage imageNamed:@"skipButton.png"];
+    UIImage * scaledSkipImage = [skipImage scaleToSize: buttonSize];
+    UIButton *skipButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [skipButton setImage:scaledSkipImage forState:UIControlStateNormal];
+    skipButton.frame = CGRectMake(width/7.5, width/1.75, scaledSkipImage.size.width, scaledSkipImage.size.height);
+    [skipButton addTarget:self
+                   action: @selector(skipTrack)
+         forControlEvents: UIControlEventTouchDown];
+    
+    //add button
+    UIImage * addImage = [UIImage imageNamed:@"addButton.png"];
+    UIImage * scaledAddImage = [addImage scaleToSize: buttonSize];
+    UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [addButton setImage:scaledAddImage forState:UIControlStateNormal];
+    addButton.frame = CGRectMake(width/1.65, width/1.75, scaledAddImage.size.width, scaledAddImage.size.height);
+    [addButton addTarget:self
+                   action: @selector(requestSong)
+         forControlEvents: UIControlEventTouchDown];
+    
+
     
     UIImageView * imageView = [[UIImageView alloc] initWithImage: scaledImage];
     //artworkImageView.image = image;
     //artworkImageView = imageView;
-
     
     [self.view addSubview:imageView];
-    imageView.layer.zPosition = -2;
+    [self.view addSubview:darkGreyView];
+    [self.view addSubview:songInfoView];
+    [self.view addSubview:skipButton];
+    [self.view addSubview:addButton];
+    imageView.layer.zPosition = -100;
+    darkGreyView.layer.zPosition = -99;
+    songInfoView.layer.zPosition = -98;
     
     [trackQueueTableView reloadData];
 }
 
-- (IBAction) skipTrack
+- (void) skipTrack
 {
     ServerInterface * djServerInterface = [ServerInterface serverInterface];
     [djServerInterface updateTrackWithTrackId:[[tracks firstObject] objectForKey:@"id"]
@@ -213,7 +245,7 @@
      ];
 }
 
-- (IBAction) requestSong
+- (void) requestSong
 {
     RequesterSearchViewController *requesterViewController = [[RequesterSearchViewController alloc] initWithNibName:@"RequesterSearchViewController" bundle:nil];
     [self.navigationController pushViewController:requesterViewController animated:YES];
