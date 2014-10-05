@@ -91,6 +91,12 @@
      ];
     
     [self loadQueue];
+    
+    [NSTimer scheduledTimerWithTimeInterval:30.0
+                                     target:self
+                                   selector:@selector(loadQueue)
+                                   userInfo:nil
+                                    repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning {

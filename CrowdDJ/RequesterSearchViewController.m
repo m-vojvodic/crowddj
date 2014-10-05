@@ -111,7 +111,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     ServerInterface * djServerInterface = [ServerInterface serverInterface];
     [djServerInterface searchSoundcloudWithSearchString:searchBar.text
                                                 success:^(NSArray * searchResults){
-                                                    // TODO: filter through these (popularity? views?)
+                                                    // TODO: exact match?
                                                     // playback_count, favoritings_count
                                                     NSSortDescriptor *sortDescriptor;
                                                     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"playback_count"
@@ -123,13 +123,14 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                                                     tracks = (NSMutableArray *)_.tail(sortedArray, 10);
                                                     NSLog(@"%@", tracks);
                                                     
+                                                    [searchResultsTableView reloadData];
                                                 }
                                                 failure:^(NSError * err){
                                                     NSLog(@"%@", err);
                                                 }
      ];
     
-    [searchResultsTableView reloadData];
+    //[searchResultsTableView reloadData];
 }
 
 @end

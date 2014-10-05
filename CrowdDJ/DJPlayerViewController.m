@@ -24,9 +24,9 @@
     [trackQueueTableView setRowHeight:64];
     
     tracks = [[NSMutableArray alloc] init];
-    
+    // todo dynamic
     ServerInterface * djServerInterface = [ServerInterface serverInterface];
-    [djServerInterface set_djId:[NSString stringWithFormat:@"%d", 1115]];
+    [djServerInterface set_djId:[NSString stringWithFormat:@"%d", 1116]];
     [djServerInterface createDjWithDjId:[djServerInterface get_djId]
                                 success:^(){
                                     // ?
@@ -46,6 +46,11 @@
     [playerWebView loadHTMLString:urlToPlay baseURL:nil];
     
     // TODO: ping server every 30 seconds (loadQueue)
+    [NSTimer scheduledTimerWithTimeInterval:30.0
+                                     target:self
+                                   selector:@selector(loadQueue)
+                                   userInfo:nil
+                                    repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning {
